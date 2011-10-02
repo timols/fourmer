@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "fourmer"
   gem.homepage = "http://github.com/timols/fourmer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{An unofficial wrapper for the Foursquare Merchant API}
+  gem.description = %Q{An easy to use library for interacting with the Foursquare Merchant API}
   gem.email = "tim.olshansky@gmail.com"
   gem.authors = ["Tim Olshansky"]
   # dependencies defined in Gemfile
