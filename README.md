@@ -22,7 +22,7 @@ Fourmer is designed to be as simple to use as possible, to mimic the layout and 
 
 Initialize your consumer with userless access:
 
-    merchant = Foursquare::Merchant::Base.new('CLIENT_ID', 'CLIENT_SECRET')
+    merchant = Foursquare::Merchant::Consumer.new('CLIENT_ID', 'CLIENT_SECRET')
 
 Redirect users to the Foursquare authentication page:
 
@@ -38,7 +38,7 @@ The user will then be asked whether to authorize your application. If the user a
 
 You can then make requests on the user's behalf by re-initializing your consumer:
 
-    merchant = Foursquare::Merchant::Base.new(access_token)
+    merchant = Foursquare::Merchant::Consumer.new(access_token)
 
 For a description of the Foursquare Authentication flow, go [here](https://developer.foursquare.com/merchant/oauth.html).
 
@@ -81,7 +81,7 @@ Create a new special:
 
 Create a new venue group:
 
-    venuegroup = merchant.venuegroups.add('NAME_OF_VENUEGROUP')
+    venuegroup = merchant.venue_groups.add('NAME_OF_VENUEGROUP')
     #=> #<Foursquare::Merchant::Venuegroup: ...>
     
 Add venues to it:
