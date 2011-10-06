@@ -1,0 +1,27 @@
+require 'autotest/growl'
+require 'autotest/fsevent'
+require 'redgreen/autotest'
+require 'autotest/restart'
+
+module Autotest::Growl
+  def self.growl title, msg, img, pri=0, stick=""
+    system "growlnotify -n autotest --image #{img} -p #{pri} -m #{ msg.inspect} #{title} #{stick}"
+  end
+
+  Autotest.add_hook :ran_command do |autotest|
+    filtered = autotest.results.grep(/\d+\s.*tests?/)
+
+    output = filtered.empty? ? "" : filtered.last.slice(/(\d+)\s.*tests?,\s(\d+)\s.*assertions?,\s(\d+)\s.*failures?,\s(\d+)\s.*errors?/)
+    if output =~ /[1-9]\sfailures?/ or output =~ /[1-9]\serrors?/
+      growl "Test Results", "#{output}", "~/Library/Autotest/rails_fail.png"
+    else
+      growl "Test Results", "#{output}", "~/Library/Autotest/rails_ok.png"
+    end
+
+  end
+
+end
+
+Autotest.add_hook :initialize do |at|
+  %w{.svn .hg .git vendor}.each {|exception| at.add_exception(exception)}
+end
